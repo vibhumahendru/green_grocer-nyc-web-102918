@@ -21,9 +21,15 @@ def apply_coupons(cart, coupons)
  coupons.each do |each_item_hash|
    item = each_item_hash[:item]
    if cart.keys.include?(item) && cart[item][:count]>= each_item_hash[:num]
+<<<<<<< HEAD
      temp_hash = {"#{item} W/COUPON" => {:price => each_item_hash[:cost], :clearance => cart[item][:clearance], :count => 1}}
      if answerCart.keys.include?("#{item} W/COUPON") 
        answerCart["#{item} W/COUPON"][:count] += 1
+=======
+     temp_hash = {"#{item} W/COUPON" => {:price => each_item_hash[:cost], :clearance => cart[item][:clearance], :count => 1}
+     if answerCart.keys.include("#{item} W/COUPON")
+       nil
+>>>>>>> ff9832c5a38cc18da432dfcac72af962e6d01d9e
      else
        answerCart.merge!(temp_hash)
      end
