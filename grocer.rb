@@ -35,9 +35,29 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
-  # code here
+  
+  cart.each do |name, detail_hash|
+    if detail_hash[:clearance] == true
+      tempVariable = detail_hash[:price] * 0.8
+      detail_hash[:price] = tempVariable.round(2)
+    end
+  end
+  cart
+  
 end
 
 def checkout(cart, coupons)
-  # code here
+ justCart = consolidate_cart(cart)
+ cartCoupons = apply_coupons(justCart,coupons)
+ clearedCart = apply_clearance(cartCoupons)
+ 
+ total = 0
+ clearedCart.each do |item, hash|
+   total += hash[:price]*hash[:count]
+ end
+ 
+ if total > 100
+   total *= 0.9
+ end
+ total
 end
